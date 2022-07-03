@@ -1,0 +1,77 @@
+
+
+// Theme Toggle
+
+
+.theme__toggle {
+    @include drop-shadow;
+}
+
+
+.theme__toggle--btn {
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    margin: 1rem;
+    transition: all .2s;
+    font-size: 30px;
+
+    &:hover {
+        transform: rotate(1turn);
+        transition: transform .5s ease-out;
+    }
+
+    &:hover .square:not(.circle) {
+        transition: all .5s ease-out .4s;
+        background-color: #4a4b51;
+        border-radius: 30%;
+    }
+
+    &:hover > .circle-x {
+
+        transition: all .5s ease-out .4s;
+        background-color: orange;
+    }
+
+    &:hover .circle-x {
+        transform: translateX(30%);
+        transition: all .5s ease-out .4s;
+        background-color: #4a4b51;
+    }
+
+}
+
+
+.square {
+    width: 1em;
+    height: 1em;
+    background: #4a4b51;
+    border-radius: 10%;
+}
+
+
+.square-x {
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.circle {
+    position: absolute;
+    background-color: orange;
+    border-radius: 50%;
+    width: .7em;
+    height: .7em;
+}
+
+.circle-x {
+    background-color: orange;
+    width: .5em;
+    height: .5em;
+}
+

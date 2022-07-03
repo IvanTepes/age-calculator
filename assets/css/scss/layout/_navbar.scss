@@ -1,0 +1,23 @@
+
+
+// Navbar
+
+
+.navbar {
+    height: 5rem;
+
+
+    &__brand {
+        font-family: $primary__font;
+        vertical-align: sub;
+        font-size: 2rem;
+    }
+
+
+    &__logo--image {
+        height: 4rem;
+        width: 4rem;
+    }
+}
+
+

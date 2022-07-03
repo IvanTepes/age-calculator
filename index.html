@@ -1,0 +1,156 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto&display=swap" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/css/scss/main.css">
+        
+        <title>How Old I am ?</title>
+        
+    </head>
+    <body id="js-body">
+    <!-- Body -->
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar__logo navbar-brand m-0" href="#">
+                    <img src="assets/images/logo/logo--gray.png" alt="" class="navbar__logo--image d-inline-block align-text-top"> 
+                </a>
+                <span class="navbar__brand">
+                    How old I am?
+                </span>
+                <span class="theme__toggle">
+                    <a href="#" class="theme__toggle--btn">
+                        <div class="square square"></div>
+                        <div class="square square-x"></div>
+                        <div class="square circle"></div>
+                        <div class="square circle circle-x"></div>
+                    </a> 
+                </span>
+            </div>
+        </nav>
+        <!-- Content -->
+        <div id="js-content" class="content container-fluid content">
+            <div class="row h-100 align-items-center justify-content-center">
+                <!-- Content Cta -->
+                <div class="content__cta col-12 text-center ">
+                    <h3 class="content__cta--cta">Find out How old are you in months, weeks, days!</h3>
+                </div>
+                <!-- Content Today Date -->
+                <div class="content__today-date col-12 text-center">
+                    <h3 id="js-date__display" class="clock content__today-date--date-display" onload="showDate()";></h3>
+                    <h3 id="js-clock__display" class="clock content__today-date--time-display" onload="showTime()";></h3>
+                </div>       
+                <div class="row justify-content-around">
+                    <!-- Content Birth Day -->
+                    <div class="content__birth-day col-sm-4 col-md-4 col-lg-3">
+                        <h5 class="text-center content__birth-day--header">Birth Day</h5>
+                        <select id="js-selectDay" class="form-select content__birth-day--select" onchange="getBirthDay()" aria-label="Select Day">
+                            <option selected>Select day</option>
+                        </select>
+                    </div>
+                    <!-- Content Birth Month -->
+                    <div class="content__birth-month col-sm-4 col-md-4 col-lg-3">
+                        <h5 class="text-center content__birth-month--header">Birth Month</h5>
+                        <select id="js-selectMonth" class="form-select content__birthMonth--select" onchange="getBirthMonth()" aria-label="Select Month">
+                            <option selected>Select Month</option>
+                        </select>
+                    </div>
+                    <!-- Content Birth Year -->
+                    <div class="content__birth-year col-sm-4 col-md-4 col-lg-3">
+                        <h5 class="text-center content__birth-year--header">Birth Year</h5>
+                        <select id="js-selectYear" class="form-select content__birth-year--select" onchange="getBirthYear()"  aria-label="Select Year">
+                            <option selected>Select Year</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Content Button -->
+                <div class="content__button col-12 text-center mt-4">
+                    <button type="button" class="btn btn-primary" onclick="setBirthDate(), calcAge(), displayResults()">Calculate</button>
+                </div>
+            </div>
+        </div>
+        <!-- Results -->
+        <div id="js-results" class="results container-fluid mt-5" style="display: none;">
+            <div class="row result justify-content-center">
+                <!-- Birth date -->
+                <div class="col-10 result__item text-center mt-5">
+                    <h2 class="result__item--header">Birth date</h2>
+                    <h4 class="result__item--date">03 April 1987</h4>
+                </div>
+                <!-- Birth day -->
+                <div class="col-10 result__item text-center mt-5">
+                    <h2 class="result__item--header">Day of birth</h2>
+                    <h4 class="result__item--date">Friday</h4>
+                </div>
+                <!-- Next birth day -->
+                <div class="col-10 result__item text-center mt-5">
+                    <h2 class="result__item--header">Until next birthday</h2>
+                    <h4 class="result__item--date">245</h4>
+                </div>
+                <!-- Alive for table -->
+                <div class="col-10 result__item text-center mt-5">
+                    <h2 class="result__item--header">You have been alive for </h2>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Years</td>
+                                <td>35</td>
+                            </tr>
+                            <tr>
+                                <td>Months</td>
+                                <td>422</td>
+                            </tr>
+                            <tr>
+                                <td>Weeks</td>
+                                <td>1,839</td>
+                            </tr>
+                            <tr>
+                                <td>Days</td>
+                                <td>12,873</td>
+                            </tr>
+                            <tr>
+                                <td>Hours</td>
+                                <td>308,952</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Distance around sun -->
+                <div class="col-10 result__item text-center mt-5 mb-5">
+                    <h2 class="result__item--header">Miles traveled around the sun</h2>
+                    <h4 class="result__item--date">20,638,528,087 miles</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div id="js-footer" class="container-fluid footer">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h4 class="m-0">@ Ivan Tepes</h4>
+                        <button type="button" class="btn btn-primary" onclick="removeContent()">Remove</button>
+                        <button type="button" class="btn btn-primary" onclick="removeresults()">display</button>
+                        <button type="button" class="btn btn-primary" onclick="displayResults(), bodyHeightFull()">toggle</button>
+                </div>
+            </div>
+        </div>
+        <!-- Body end -->
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="age.js"></script>
+
+    </body>
+
+</html>

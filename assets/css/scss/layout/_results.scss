@@ -1,0 +1,33 @@
+.results {
+    width: 85%;
+    /* height: calc(100% - 9rem); */
+    /* background-color: red; */
+    &__birth-date {
+        &--header {
+            
+        }
+        &--date {
+
+        }
+    }
+    &__alive-table {
+
+    }
+
+
+}
+
+
+.result {
+    &__item {
+        @include drop-shadow;
+        &--header {
+            margin-top: 0.5rem;
+            font-family: $primary__font;
+        }
+        &--date {
+            color: red;
+        }
+    }
+                             
+}

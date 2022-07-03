@@ -1,0 +1,126 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  /* margin-bottom: 0.5rem; */
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+}
+
+body {
+  height: 100vh;
+  background-color: #e6e7ee;
+  color: #4a4b51;
+  font-family: "Roboto", sans-serif;
+  box-shadow: inset rgba(104, 139, 255, 0.1) 0px 48px 100px 0px, inset rgba(17, 12, 46, 0.15) 0px 30px 100px 0px;
+}
+
+.navbar {
+  height: 5rem;
+}
+.navbar__brand {
+  font-family: "Abril Fatface", cursive;
+  vertical-align: sub;
+  font-size: 2rem;
+}
+.navbar__logo--image {
+  height: 4rem;
+  width: 4rem;
+}
+
+.content {
+  width: 85%;
+  height: calc(100% - 9rem);
+}
+
+.content .row {
+  align-content: space-evenly;
+}
+
+.footer {
+  position: fixed;
+  padding: 0px 10px 0px 10px;
+  bottom: 0;
+  width: 99%;
+  height: 4rem;
+}
+
+.results {
+  width: 85%;
+  /* height: calc(100% - 9rem); */
+  /* background-color: red; */
+}
+.result__item {
+  box-shadow: inset 3px 2px 5px 0 rgba(255, 255, 255, 0.5), rgba(104, 139, 255, 0.1) 7px 3px 10px, rgba(0, 0, 0, 0.1) 7px 5px 10px;
+  border-radius: 15px;
+}
+.result__item--header {
+  margin-top: 0.5rem;
+  font-family: "Abril Fatface", cursive;
+}
+.result__item--date {
+  color: red;
+}
+
+.theme__toggle {
+  box-shadow: inset 3px 2px 5px 0 rgba(255, 255, 255, 0.5), rgba(104, 139, 255, 0.1) 7px 3px 10px, rgba(0, 0, 0, 0.1) 7px 5px 10px;
+  border-radius: 15px;
+}
+
+.theme__toggle--btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 1rem;
+  transition: all 0.2s;
+  font-size: 30px;
+}
+.theme__toggle--btn:hover {
+  transform: rotate(1turn);
+  transition: transform 0.5s ease-out;
+}
+.theme__toggle--btn:hover .square:not(.circle) {
+  transition: all 0.5s ease-out 0.4s;
+  background-color: #4a4b51;
+  border-radius: 30%;
+}
+.theme__toggle--btn:hover > .circle-x {
+  transition: all 0.5s ease-out 0.4s;
+  background-color: orange;
+}
+.theme__toggle--btn:hover .circle-x {
+  transform: translateX(30%);
+  transition: all 0.5s ease-out 0.4s;
+  background-color: #4a4b51;
+}
+
+.square {
+  width: 1em;
+  height: 1em;
+  background: #4a4b51;
+  border-radius: 10%;
+}
+
+.square-x {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.circle {
+  position: absolute;
+  background-color: orange;
+  border-radius: 50%;
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.circle-x {
+  background-color: orange;
+  width: 0.5em;
+  height: 0.5em;
+}/*# sourceMappingURL=main.css.map */
