@@ -1,8 +1,5 @@
 @mixin drop-shadow {
-    box-shadow: inset 3px 2px 5px 0 rgb(255 255 255 / 50%), rgb(104 139 255 / 10%) 7px 3px 10px, rgb(0 0 0 / 10%) 7px 5px 10px;
-    border-radius: 15px
-}
 
-@mixin center-evenly {
-    
+    box-shadow: inset 3px 2px 5px 0 rgb(255 255 255 / 50%), rgb(104 139 255 / 10%) 7px 3px 10px, rgb(0 0 0 / 10%) 7px 5px 10px;
+    border-radius: 10px
 }

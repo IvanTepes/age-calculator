@@ -1,0 +1,14 @@
+
+
+body {
+    height: 100vh;
+
+    background-color: $color__theme;
+    color: $color__text--dark;
+
+    font-family: $secondary__font;
+    font-size: 21px;
+
+    box-shadow: inset rgba(104, 139, 255, 0.1) 0px 48px 100px 0px,
+                inset rgba(17, 12, 46, 0.15) 0px 30px 100px 0px;
+}

@@ -4,12 +4,13 @@
 
 
 .navbar {
-    height: 5rem;
+    height: 6rem;
+    width: 99%;
 
 
     &__brand {
-        font-family: $primary__font;
         vertical-align: sub;
+        font-family: $primary__font;
         font-size: 2rem;
     }
 

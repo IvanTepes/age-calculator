@@ -1,4 +1,4 @@
-// Find BUG ctrl + f ---> BUG 
+// Find BUG ctrl + f ---> BUG
 
 
 // -----------------------------------------------------------------------------
@@ -31,7 +31,7 @@ const dayNames = [
     'Wednesday',
     'Thursday',
     'Friday',
-    'Saturday',  
+    'Saturday',
 ]
 
 
@@ -57,17 +57,14 @@ const dayNames = [
 
 let today = new Date();                            // Date Today // Mon Jan 1 2000 00:00:00
 let todayInMs = Date.now();                        // Date Today in milliseconds // 1656448707844
+
 let todayDay = today.getDay();                     // Today Day // 0-6
 let todayDayName = dayNames[today.getDay()];       // Today Day Name
 
-if (todayDay === 0) {                              // If today day index is 0 == Sunday ==> 7 == Sunday
-    todayDay = 7;
-}
-
-let todayMonth = today.getMonth() + 1;              // Today Month  // 0-11 // +1 // add +1 to index // 1-12 // 
+let todayMonth = today.getMonth();
 let todayMonthName = monthsNames[today.getMonth()]  // Today Month Name
 
-let todayYear = today.getFullYear();                // Today Year 
+let todayYear = today.getFullYear();                // Today Year
 
 
 
@@ -90,50 +87,56 @@ let todayYear = today.getFullYear();                // Today Year
 
 
 
+
 // Function to display today date
-function showDate() {
+function displayDate() {
     let todayDay = today.getDate();
     let todayDayName = dayNames[today.getDay()];
+
     let todayMonthName = monthsNames[today.getMonth()];
+
     let todayYear = today.getFullYear();
+
     let todayDate = todayDayName + ", "+ todayDay + ". " + todayMonthName + " " + todayYear + ".";
 
-    document.getElementById("js-date__display").innerText = todayDate;
-    document.getElementById("js-date__display").textContent = todayDate;
+    document.getElementById("js-display__date").innerText = todayDate;
+    document.getElementById("js-display__date").textContent = todayDate;
 
-    setTimeout(showTime, 1000);
+    setTimeout(displayDate, 1000);
 
     return  todayDate; // Just returned for console log
 }
 
 
-// Function to display time 
-function showTime(){
+// Function to display today time
+function displayTime() {
     let date = new Date();
+
     let h = date.getHours();   // 0 - 23
     let m = date.getMinutes(); // 0 - 59
     let s = date.getSeconds(); // 0 - 59
+
     let session = "AM";
-    
+
     if(h == 0){
         h = 12;
     }
-    
+
     if(h > 12){
         h = h - 12;
         session = "PM";
     }
-    
+
     h = (h < 10) ? "0" + h : h;
     m = (m < 10) ? "0" + m : m;
     s = (s < 10) ? "0" + s : s;
-    
+
     let time = h + ":" + m + ":" + s + " " + session;
 
-    document.getElementById("js-clock__display").innerText = time;
-    document.getElementById("js-clock__display").textContent = time;
-    
-    setTimeout(showTime, 1000);
+    document.getElementById("js-display__time").innerText = time;
+    document.getElementById("js-display__time").textContent = time;
+
+    setTimeout(displayTime, 1000);
     return time // Just returned for console log
 }
 
@@ -145,9 +148,7 @@ function showTime(){
 
 
 
-/* 
-
-    console.group('Today');
+    /* console.group('Today');
     console.log(`${today}`)
     console.group('Today day in milliseconds')
     console.log(`${todayInMs} ms`)
@@ -168,15 +169,12 @@ function showTime(){
     console.log(`${todayYear}.`)
     console.groupEnd();
     console.group('Today day formatted');
-    console.log(showDate())
+    console.log(displayDate())
     console.groupEnd();
     console.group('Today time');
-    console.log(showTime())
+    console.log(displayTime())
     console.groupEnd();
-
-    
- */
-
+    console.groupEnd(); */
 
 
 
@@ -202,52 +200,72 @@ function showTime(){
 // Numbers od days in one month 1-31
 let numberDays = "";
 
-// Numbers of month in one year 1-12
+// Numbers of month in one year 0-11
 let monthlength = monthsNames.length; // 12
 
-// Years number from today - 150 years 
+// Years number from today - 150 years
 let years = "";
 
 
 // Loop to create day option element and display day number
 for (let day = 1; day < 32; day++) { // day = 1; 1 < 32; 1 + 2;
     numberDays += day +  ","; // x += y // x = x + y // "" + 1,2,3,4 ..
-    const option = document.createElement("option"); // Create option element
+
+    let option = document.createElement("option"); // Create option element
     document.getElementById("js-selectDay").appendChild(option).value = day;  // Add element to dropdown select list
-    const dayNumber = document.createTextNode(day + "."); // Create option element day number node .
+
+    let dayNumber = document.createTextNode(day + "."); // Create option element day number node .
     option.appendChild(dayNumber); // Append day number node to option element
 }
 
-// Loop to create month option element and display month name 
+// Loop to create month option element and display month name
 for (let i = 0; i < monthlength; i++) { // index = 0; 0 < 12; 0 = 1;
-    const option = document.createElement("option"); // Create option element 
-    document.getElementById("js-selectMonth").appendChild(option).value = i + 1; // Add element to dropdown list
-    const monthName = document.createTextNode(monthsNames[i]); // Create option element month name node 
+
+    let option = document.createElement("option"); // Create option element
+    document.getElementById("js-selectMonth").appendChild(option).value = i; // Add element to dropdown list
+
+    let monthName = document.createTextNode(monthsNames[i]); // Create option element month name node
     option.appendChild(monthName); // Append month name node to option element
 }
 
 // Loop to create year option element and display year number
-for (let year = todayYear; year > todayYear - 151; year--) { // year = today ; year is bigger than today- 150 -- ; today - 150 year 
-    years += year +  ","; // x += y // x = x + y // "" - 2022,2021,2020,2019 ..  
-    const option = document.createElement("option"); // Create option element
+for (let year = todayYear; year > todayYear - 151; year--) { // year = today ; year is bigger than today- 150 -- ; today - 150 year
+    years += year +  ","; // x += y // x = x + y // "" - 2022,2021,2020,2019 ..
+
+    let option = document.createElement("option"); // Create option element
     document.getElementById("js-selectYear").appendChild(option).value = year;  // Add element to dropdown select list
-    const yearNumber = document.createTextNode(year + "."); // Create year number node . 
+
+    let yearNumber = document.createTextNode(year + "."); // Create year number node .
     option.appendChild(yearNumber); // Append year number node to option element
 }
 
+/* NOT IN USE */
 
 // Days string
-const daysString = numberDays; // 1,2,3,4,5,6,7
+//let daysString = numberDays; // 1,2,3,4,5,6,7
+
+//let monthString = monthlength;
 
 // Max days numberin month array
-const maxDays = daysString.split(","); // [1,2,3,..28,29,30,31]
+//let maxDays = daysString.split(","); // [1,2,3,..28,29,30,31]
 
 // Years string
-const yearsString = years; // 2150,2149,2148,2147
+//let yearsString = years; // 2150,2149,2148,2147
 
 // Years numbers array today year - 150 years
-const yearsMax = yearsString.split(",").filter(e => e.length);
+//let yearsMax = yearsString.split(",").filter(e => e.length);
 
+/* console.group('Date Time Values');
+console.group('Number of days')
+console.log(`${numberDays}`)
+console.groupEnd();
+console.group('Number of months')
+console.log(`${monthlength}.`)
+console.groupEnd();
+console.group('Number of years');
+console.log(`${years}`)
+console.groupEnd();
+console.groupEnd(); */
 
 
 // -----------------------------------------------------------------------------
@@ -269,26 +287,29 @@ const yearsMax = yearsString.split(",").filter(e => e.length);
 
 
 
-// Function to get selected Day 
+// Function to get selected Day
 function getBirthDay() {
-    var selectDropdown = document.getElementById("js-selectDay"); // Day Dropdown list
-    var selectedDay = selectDropdown.options[selectDropdown.selectedIndex].value; // Get day value
+    let selectDropdown = document.getElementById("js-selectDay"); // Day Dropdown list
+    let selectedDay = selectDropdown.options[selectDropdown.selectedIndex].value; // Get day value
+    //console.log(`Selected day =====>  ${selectedDay}`)
     return selectedDay;
 }
 
 
-// Function to get selected Month 
+// Function to get selected Month
 function getBirthMonth() {
-    var selectDropdown = document.getElementById("js-selectMonth"); // Month Dropdown list
-    var selectedMonth = selectDropdown.options[selectDropdown.selectedIndex].value; // Get month value
+    let selectDropdown = document.getElementById("js-selectMonth"); // Month Dropdown list
+    let selectedMonth = selectDropdown.options[selectDropdown.selectedIndex].value; // Get month value
+    //console.log(`Selected month =====>  ${selectedMonth}`)
     return selectedMonth;
 }
 
 
-//Function to get selected Year 
+//Function to get selected Year
 function getBirthYear() {
-    var selectDropdown = document.getElementById("js-selectYear"); // Year dropdown list
-    var selectedYear = selectDropdown.options[selectDropdown.selectedIndex].value; // Get year value
+    let selectDropdown = document.getElementById("js-selectYear"); // Year dropdown list
+    let selectedYear = selectDropdown.options[selectDropdown.selectedIndex].value; // Get year value
+    //console.log(`Selected year =====>  ${selectedYear}`)
     return selectedYear;
 }
 
@@ -313,12 +334,23 @@ function getBirthYear() {
 
 
 
+// Function to set birth date
 function setBirthDate() {
     const selectedDay = getBirthDay();
-    const selectedMonth = ((getBirthMonth() - 1) + 1);
+    const selectedMonth = getBirthMonth();
     const selectedYear = getBirthYear();
     const selectedDate = new Date(selectedYear, selectedMonth, selectedDay);
-    return selectedDate;
+    return selectedDate; // Return date-time object
+}
+
+
+// Function to set birth date for next birthday.
+function nextBirthDate() {
+    let todayDate = today;
+    let birthDate = setBirthDate();
+    let nextBirthDay = new Date(todayDate.getFullYear() + 1, birthDate.getMonth(), birthDate.getDate());
+    //console.log(nextBirthDay);
+    return nextBirthDay;
 }
 
 
@@ -382,7 +414,7 @@ function yearLength() {
 
 
 // -----------------------------------------------------------------------------
-// --------------------------- LENGTH IN MILLISECONDS  -------------------------
+// --------------------------- FUNCTIONS TO CALCULATE OLD   --------------------
 // -----------------------------------------------------------------------------
 
 
@@ -408,6 +440,13 @@ function calcMonthOld() {
     return monthsOld;
 }
 
+function calcYearsOld() {
+    let selectedDate = setBirthDate();
+    let yearsOld = (today.getTime() - selectedDate.getTime()) / yearLength();
+    //console.log(monthsOld)
+    return yearsOld;
+}
+
 
 
 // -----------------------------------------------------------------------------
@@ -424,7 +463,7 @@ function calcMonthOld() {
 
 
 // -----------------------------------------------------------------------------
-// ------------------------ FUNCTION TO DISPLAY RESULTS  -----------------------
+// ------------------------ FUNCTIONS TO DISPLAY RESULTS  -----------------------
 // -----------------------------------------------------------------------------
 
 
@@ -442,172 +481,82 @@ function displayResults() {
         results.style.display = "none";
         content.style.display = "block";
         footer.style.position = "fixed";
-    }  
+    }
+
+
+    bodyHeightFull()
+    displayBirthDate();
+    nextBirthDate();
+    displayNextBirthDay();
+    displayAge();
 }
 
 
+// Function to display birth date
+function displayBirthDate() {
+    let birthDate = setBirthDate(); // Date object
+    let birthDayDate = birthDate.getDate(); // Day date 1-31
+    let birthDay = birthDate.getDay();  // Day 0-6
 
-// -----------------------------------------------------------------------------
-// -----------------------------------  END  -----------------------------------
-// -----------------------------------------------------------------------------
+
+    if (birthDay === 0) {  // day == 0
+        birthDay = 7; // day 1-7 // 7 == Sunday
+    }
 
 
+    let birthDayName = dayNames[birthDay]; // Monday ....
 
-function calcAge() {
-    let selectedDate = setBirthDate();
-    let msPerDay = dayLength();
-    letmsPerWeek = weekLength // Number of milliseconds per day
-    let daysOld = (today.getTime() - selectedDate.getTime()) / msPerDay;
-    let weeksOld = (today.getTime() - selectedDate.getTime()) / msPerDay;
-    showData()
-    calculateAge()
-    return daysOld;
+    let birthMonth = getBirthMonth(); // 0-11
+    let birthMonthName = monthsNames[birthMonth]; // 0 = January -- 11 = December
+
+    let birthYear = getBirthYear(); // Year
+    let birthDateFormated = birthDayName + ", " + " " + birthDayDate + ". " + birthMonthName + " " + birthYear + ".";
+
+    document.getElementById("js-displayBirthDate").innerText = birthDateFormated;
+    document.getElementById("js-displayBirthDate").textContent = birthDateFormated;
+    document.getElementById("js-displayBirthDayName").innerText = birthDayName;
+    document.getElementById("js-displayBirthDayName").textContent = birthDayName;
+
+
+    return  birthDateFormated; // Just returned for console log
 }
 
 
+// Function to display days till next birthday
+function displayNextBirthDay() {
+    let todayDate = today.getTime();
+    let birthDate = nextBirthDate().getTime();
+    let daysRemaining = (birthDate - todayDate) / dayLength();
 
-function showData() {
-    let daysOld = calcDaysOld()
-    let weeksOld = calcWeeksOld()
-    let monthsOld = calcMonthOld()
+    document.getElementById("js-days-remaining").innerText = Math.ceil(daysRemaining);
+    document.getElementById("js-days-remaining").textContent = Math.ceil(daysRemaining);
+}
+
+function displayAge() {
+    let daysOld = calcDaysOld();
+    let weeksOld = calcWeeksOld();
+    let monthsOld = calcMonthOld();
+    let yearsOld = calcYearsOld();
     console.log(`You are ===> ${daysOld} days old. <===`)
     console.log(`You are ===> ${weeksOld} weeks old. <===`)
     console.log(`You are ===> ${monthsOld} months old. <===`)
+    console.log(`You are ===> ${yearsOld} years old. <===`)
 
-    return daysOld;
+    document.getElementById("js-age-days").innerText = Math.floor(daysOld);
+    document.getElementById("js-age-days").textContent = Math.floor(daysOld);
+    document.getElementById("js-age-weeks").innerText = Math.floor(weeksOld);
+    document.getElementById("js-age-weeks").textContent = Math.floor(weeksOld);
+    document.getElementById("js-age-months").innerText = Math.floor(monthsOld);
+    document.getElementById("js-age-months").textContent = Math.floor(monthsOld);
+    document.getElementById("js-age-years").innerText = Math.floor(yearsOld);
+    document.getElementById("js-age-years").textContent = Math.floor(yearsOld);
 }
-
-function calculateAge() {
-    var dateFuture = new Date(new Date().getFullYear() +1, 0, 1);
-    let selectedDate = setBirthDate();
-    console.log(dateFuture)
-    console.log(selectedDate)
-
-}
-
-
-
-
-
-/* function calcAge() {
-    const selectedDate = setBirthDate();
-    const msPerDay = 24 * 60 * 60 * 1000; // Number of milliseconds per day
-    let ageYears = (today.getTime() - selectedDate.getTime()) / msPerDay;
-    ageYears = Math.round(ageYears)
-    console.log(ageYears)
-    return ageYears;
-} */
-
-
-/* function calcYears() {
-    const selectedDay = getBirthDay();
-    const selectedMonth = getBirthMonth();
-    const selectedYear = getBirthYear();
-    setDate()
-    
-    console.log(`${selectedDay}.${selectedMonth}.${selectedYear}. `);
-    return todayYear - selectedYear;
-}
- */
-
-
-
-/* const oneDay = 24 * 60 * 60 * 1000;
-const birthDate = new Date('4/3/1987')
-const todayDate = new Date()
-
-
-console.log(`Today is ${todayDate}.`)
-document.getElementById("age").innerHTML = todayDate;
-
-const diffDates = Math.round(Math.abs((birthDate - todayDate) / oneDay));
-
-const diffDays = Math.round(Math.abs())
-
-console.log(diffDates)
-console.log(oneDay)
-console.log(oneDay * 7)
-const oneWeek = oneDay * 7
-console.log(oneWeek / oneDay)
-const daysOld = Math.round(Math.abs((diffDates - oneWeek) / oneDay));
-console.log(daysOld)
- */
-
-
-showDate();
-showTime();
-
-
 
 
 
 // -----------------------------------------------------------------------------
 // -----------------------------------  END  -----------------------------------
 // -----------------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------------
-// ------------------------ FUNCTION TO DISPLAY RESULTS  -----------------------
-// -----------------------------------------------------------------------------
-
-
-
-
-/* // Function to toggle content and results
-function displayResults() {
-    let results = document.querySelector("#js-results");
-    let content = document.querySelector("#js-content");
-    let footer = document.querySelector("#js-footer");
-    if (results.style.display == "none") {
-        results.style.display = "block";
-        content.style.display = "none";
-        footer.style.position = "relative";
-    } else {
-        results.style.display = "none";
-        content.style.display = "block";
-        footer.style.position = "fixed";
-    }  
-}
-
-
-function positionFooter() {
-    let footer = document.querySelector("#js-footer");
-    let resu
-} */
-
-// -----------------------------------------------------------------------------
-// -----------------------------------  END  -----------------------------------
-// -----------------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-//results = document.querySelector('#js-content');
-//console.log(window.getComputedStyle(results).display)
-
-/* myFunction2() */
-
-/* myFunction2() */
-
-
 
 
 
@@ -621,8 +570,8 @@ function positionFooter() {
 // -----------------------------------------------------------------------------
 // ----------------------------- DISPLAY BUG FIX -------------------------------
 // -----------------------------------------------------------------------------
-/* 
-    BUG FIX ---->   Bug:    
+/*
+    BUG FIX ---->   Bug:
                             When I display the results the body is short
                             and the background color does not cover the
                             whole body.
@@ -638,11 +587,12 @@ function positionFooter() {
 
 */
 
+
 function bodyHeightFull() {
     let results = document.getElementById("js-results");
     let body = document.getElementById("js-body");
     let fullHeight = 100 + "%";
-    
+
 
     if (results.style.display === "block") {
         body.style.height = fullHeight;
@@ -652,14 +602,14 @@ function bodyHeightFull() {
 
 
     /*
-    
+
     console.group('Results display');
     console.log(`${results.style.display}`)
     console.groupEnd();
     console.group('Body Height')
     console.log(body.style.height);
     console.groupEnd();
-    
+
     */
 
 
@@ -679,3 +629,6 @@ function bodyHeightFull() {
 // -----------------------------------------------------------------------------
 
 
+// Display date and time
+displayDate();
+displayTime();
