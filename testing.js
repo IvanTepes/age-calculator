@@ -200,9 +200,6 @@ for (let year = todayYear; year > todayYear - 151; year--) { // year = today ; y
 function getBirthDay() {
     let selectDropdown = document.getElementById("js-selectDay"); // Day Dropdown list
     let selectedDay = selectDropdown.options[selectDropdown.selectedIndex].value; // Get day value
-    //validate();
-    //displayIndex();
-    validateDay();
     return selectedDay;
 }
 
@@ -211,7 +208,6 @@ function getBirthDay() {
 function getBirthMonth() {
     let selectDropdown = document.getElementById("js-selectMonth"); // Month Dropdown list
     let selectedMonth = selectDropdown.options[selectDropdown.selectedIndex].value; // Get month value
-    //validate();
     return selectedMonth;
 }
 
@@ -220,7 +216,6 @@ function getBirthMonth() {
 function getBirthYear() {
     let selectDropdown = document.getElementById("js-selectYear"); // Year dropdown list
     let selectedYear = selectDropdown.options[selectDropdown.selectedIndex].value; // Get year value
-    //validate();
     return selectedYear;
 }
 
@@ -368,28 +363,19 @@ function calcYearsOld() {
 // ------------------------ FUNCTIONS TO DISPLAY RESULTS  -----------------------
 // -----------------------------------------------------------------------------
 
-function showData() {
-    let validate = validateDay();
 
-    if (validate == true) {
-        displayResults();
-    }
+
+function dispOption() {
+    let elem = document.getElementById("js-selectDay");
+    console.log(elem)
 }
 
-
-function displayContent() {
-    let content = document.querySelector("#js-content");
-    
-}
 
 // Function to toggle content and results
 function displayResults() {
-
     let results = document.querySelector("#js-results");
     let content = document.querySelector("#js-content");
     let footer = document.querySelector("#js-footer");
-
-
     if (results.style.display == "none") {
         results.style.display = "block";
         content.style.display = "none";
@@ -400,13 +386,13 @@ function displayResults() {
         footer.style.position = "fixed";
     }
 
-    bodyHeightFull();
+
+    bodyHeightFull()
     displayBirthDate();
     setNextBirthDate();
-    displayRemainingDays();
-    displayNextBirthday();
+    displayRemainingDays()
+    displayNextBirthday()
     displayAge();
-        
 }
 
 
@@ -465,6 +451,10 @@ function displayAge() {
     let weeksOld = calcWeeksOld();
     let monthsOld = calcMonthOld();
     let yearsOld = calcYearsOld();
+    // console.log(`You are ===> ${daysOld} days old. <===`)
+    // console.log(`You are ===> ${weeksOld} weeks old. <===`)
+    // console.log(`You are ===> ${monthsOld} months old. <===`)
+    // console.log(`You are ===> ${yearsOld} years old. <===`)
 
     document.getElementById("js-age-days").innerText = Math.floor(daysOld);
     document.getElementById("js-age-days").textContent = Math.floor(daysOld);
@@ -485,11 +475,15 @@ function displayAge() {
 
 
 // -----------------------------------------------------------------------------
-// ----------------------------- DISPLAY BUG FIX -------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 
 
+// -----------------------------------------------------------------------------
+// ----------------------------- DISPLAY BUG FIX -------------------------------
+// -----------------------------------------------------------------------------
 /* 
     BUG FIX ---->   Bug:    
                             When I display the results the body is short
@@ -520,6 +514,19 @@ function bodyHeightFull() {
         body.style.height = ""
     }
 
+
+    /*
+    
+    console.group('Results display');
+    console.log(`${results.style.display}`)
+    console.groupEnd();
+    console.group('Body Height')
+    console.log(body.style.height);
+    console.groupEnd();
+    
+    */
+
+
 }
 
 
@@ -531,118 +538,12 @@ function bodyHeightFull() {
 
 
 // -----------------------------------------------------------------------------
-// ----------------------------- RESET AND DISPLAY CONTENT ---------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 
-const message = {
-    sucess: "Congrats sucess",
-    error: "Please select day",
-    leapYear: "This is leap year"
-}
 
-
-// Function to reset dropdowns
-function reset() {
-    let dropDownDay = document.getElementById("js-selectDay");
-    let dropDownMonth = document.getElementById("js-selectMonth");
-    let dropDownYear = document.getElementById("js-selectYear");
-    dropDownDay.selectedIndex = 0;
-    dropDownMonth.selectedIndex = 0;
-    dropDownYear.selectedIndex = 0;
-    displayResults();
-}
-
-function displayIndex() {
-    let index = document.getElementById("js-selectDay").selectedIndex;
-    console.log(index)
-}
-
-
-function validateDay() {
-    let dropDownDay = document.getElementById("js-selectDay");
-    let messageElem = document.getElementById("js-day-container")
-    
-    dropDownDay = dropDownDay.selectedIndex;
-    
-    if (dropDownDay == 0) {
-        messageElem.style.color = 'red';
-        messageElem.querySelector('small').innerHTML = message.error;
-        dropDownDay = document.getElementById("js-day-container");
-        dropDownDay.classList.add("error");
-        return false;
-    } else {
-        dropDownDay = document.getElementById("js-day-container");
-        dropDownDay.classList.contains('error');
-        dropDownDay.classList.remove('error');
-        messageElem.querySelector('small').innerHTML = "";
-        messageElem.style.color = '';
-        return true
-    }
-}
-
-function validateForm(){
-
-    /* let selectOption = document.getElementById("js-select-elements");
-    let dropDowns = selectOption.getElementsByTagName("select");
-    console.log(dropDowns[1].selectedIndex)
-
-    for (const item in dropDowns) {
-        console.log(item)
-    }
-
-    for (i= 0; i < dropDowns.length; i++) {
-        console.log(i)
-    }
-
-    Object.entries(dropDowns).forEach(
-        ([key, value]) => console.log(key, value)
-    ); */
-
-
-
-}
-
-
-
-function validate(){
-
-    let dropDownDay = document.getElementById("js-selectDay");
-    let dropDownMonth = document.getElementById("js-selectMonth");
-    let dropDownYear = document.getElementById("js-selectYear");
-
-    let forms = [dropDownDay, dropDownMonth, dropDownYear];
-
-    if (forms[0].selectedIndex == 0 || forms[1].selectedIndex == 0 || forms[2].selectedIndex == 0) {
-        dropDownDay = document.getElementById("js-day-container");
-        dropDownDay.classList.add("error");
-    } else {
-        dropDownDay = document.getElementById("js-day-container");
-        dropDownDay.classList.remove("error");
-    }
-
-    if (forms[1].selectedIndex == 0) {
-        dropDownMonth = document.getElementById("js-month-container");
-        dropDownMonth.classList.add("error");
-    } else {
-        dropDownMonth = document.getElementById("js-month-container");
-        dropDownMonth.classList.remove("error");
-    }
-
-    if (forms[2].selectedIndex == 0) {
-        dropDownYear = document.getElementById("js-year-container");
-        dropDownYear.classList.add("error");
-    } else {
-        dropDownYear = document.getElementById("js-year-container");
-        dropDownYear.classList.remove("error");
-    }
-
-}
-
-
-// -----------------------------------------------------------------------------
-// -----------------------------------  END  -----------------------------------
-// -----------------------------------------------------------------------------
 
 
 // Display date and time
